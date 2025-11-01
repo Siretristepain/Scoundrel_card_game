@@ -6,11 +6,14 @@ from utils.cards_utils import powers, suits_emoji
 
 class Card():
 
-    def __init__(self, value=None, suits=None, power=None):
+    def __init__(self, value=None, suits=None, power=None, next=None):
         self.value = str(value)
         self.suits = suits
         power = powers.get(self.value, None)
         self.power = power
+
+        # Link to the next Card
+        self.next = next
         print(f"Card created : {self.value} of {self.suits}, power : {self.power}")
 
     def __repr__(self):
@@ -128,11 +131,12 @@ class Card():
         """
         return self.power == other_card.power
 
-C1 = Card('K', 'Clubs')
-C2 = Card('8', 'Diamonds')
+if __name__ == '__main__':
+    C1 = Card('K', 'Clubs')
+    C2 = Card('8', 'Diamonds')
 
-print(C2.is_greater(C1))
-print(C2.is_lower(C1))
+    print(C2.is_greater(C1))
+    print(C2.is_lower(C1))
 
 def generate_standard_54_cards_deck():
     """
@@ -157,6 +161,7 @@ def generate_standard_54_cards_deck():
 
     return deck
 
-deck = generate_standard_54_cards_deck()
-print(deck)
-print(len(deck)) # 54
+if __name__ == '__main__':
+    deck = generate_standard_54_cards_deck()
+    print(deck)
+    print(len(deck)) # 54

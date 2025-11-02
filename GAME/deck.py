@@ -9,6 +9,9 @@ class Deck():
     def __init__(self, head: Card = None):
         self.head = head
 
+    def __repr__(self):
+        return f"Deck composed of {self.get_size()} Cards."
+
     def is_empty(self):
         """
         Method used to check if the Deck is empty.
@@ -59,7 +62,7 @@ class Deck():
         """
 
         # If the Deck is empty, return None
-        if self.is_empty:
+        if self.is_empty():
             return None
         
         # Otherwise, go through all Cards until the last one (which have no next)
@@ -146,6 +149,27 @@ class Deck():
         card_to_add.next = actual_top_card
 
         return True
+    
+    def add_bottom_card(self, card_to_add: Card=None):
+        """
+        Method used to add a Card at the bottom of the Deck.
+
+        Args:
+            - card_to_add (Card()) : the Card to add at the bottom.
+
+        Return:
+            - (bool) : True if success, False if the Card to add is None or have no value.
+        """
+
+        # We don't add the Card if it's None or have a null value.
+        if card_to_add == None or card_to_add.is_null():
+            return False
+
+        # We get the last Card and make it's pointer go through 'card_to_add'.
+        last_card = self.get_last_card()
+        last_card.next = card_to_add
+
+        return True
 
 if __name__ == '__main__':
     C1 = Card('2', 'Spades')
@@ -156,13 +180,8 @@ if __name__ == '__main__':
 
     D = Deck()
     D.head = C1
-    print(D.get_size())
+    # print(D.get_size())
     # print(D.get_first_card())
     # print(D.get_last_card())
-    # print(D.get_card(2))
-    print(D.have_in(C2))
-    print(D.have_in(C3))
-    print(D.add_top_card(C3))
-    print(D.have_in(C3))
-    print(D.get_size())
-
+    print(D.add_bottom_card(C3))
+    print(D.get_last_card())

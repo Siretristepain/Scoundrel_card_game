@@ -26,7 +26,7 @@ Here is some interesting methods to implement in the Card logic :
 - Is lower than ... ?
 - Is a joker ?
 
-**Deck**
+**Deck** :
 As we said, a Deck is a linked chain. So, it's define by a "head". This is the first node (-> the first card).
 
 Here is some interesting methods to implement in the Deck logic :
@@ -42,3 +42,10 @@ Here is some interesting methods to implement in the Deck logic :
 - Remove the X card in the deck.
 - suffle the deck.
 - draw the first card of the deck.
+
+**Board** :
+I think that the best idea is to create a class for the board game. Thanks to that, it will be simple to show rooms during the game.
+The board need to have 5 Cards slots : 4 for the room's Cards and one for the potential equiped weapon.
+
+**Discard pile** :
+As the board, I think the best idea is to create a class for the discard pile ? Maybe it's juste a Deck instance ??

@@ -149,7 +149,7 @@ class Deck():
         card_to_add.next = actual_top_card
 
         return True
-    
+
     def add_bottom_card(self, card_to_add: Card=None):
         """
         Method used to add a Card at the bottom of the Deck.
@@ -168,6 +168,32 @@ class Deck():
         # We get the last Card and make it's pointer go through 'card_to_add'.
         last_card = self.get_last_card()
         last_card.next = card_to_add
+
+        return True
+
+    def add_card(self, card_to_add: Card=None, index: int=0):
+        """
+        Method used to add a Card at the 'index' position in the Deck.
+        Be careful, we start to count Card by index 0 (like Python standard list), so, for example, if you add a Card with index=5, it means that you're Card is
+        the sixth Card of the Deck.
+
+        Args:
+            - card_to_add (Card) : the Card to add in the Deck.
+            - index (int) : the position to add the Card in the Deck.
+
+        Returns:
+            - (bool) :
+        """
+
+        # TODO: prevent case if index = 0 (because then we call get_card(index-1) so it will be get_card(-1) --> Error.
+
+        # We have to get the Card juste before the index that we want to add our Card (to change it's pointer and save it's older next).
+        card_before = self.get_card(index-1)
+        index_card_before_change = card_before.next
+
+        # We put our new Card in the pointer of the previous Card and we make the pointer of our new Card to the older 'index' positionned Card.
+        card_before.next = card_to_add
+        card_to_add.next = index_card_before_change
 
         return True
 

@@ -2,6 +2,7 @@
 # Implement Deck() class
 # ======================
 
+import random
 from cards import Card
 
 class Deck():
@@ -10,7 +11,7 @@ class Deck():
         self.head = head
 
     def __repr__(self):
-        return f"Deck composed of {self.get_size()} Cards."
+        return f"Deck composed of {self.get_size()} Cards : {self.get_list()}."
 
     def is_empty(self):
         """
@@ -236,18 +237,81 @@ class Deck():
 
         return True
 
+    def get_list(self):
+        """
+        Method used to return a Python list composed of all Card in the Deck.
+
+        Returns:
+            - cards_list (list) : the list of all the Cards.
+        """
+        card = self.head
+
+        # Initialize the list with the head inside at the first position
+        cards_list = [card]
+
+        # Go through all the Card by 'next' relation and add to the list
+        while card.next:
+            card = card.next
+            cards_list.append(card)
+
+        return cards_list
+
+    def cut_all_next(self):
+        """
+        Method used to remove all the 'next' relation of Cards in the Deck.
+
+        Returns:
+            - (bool) : True.
+        """
+
+        cards_list = self.get_list()
+
+        for card in cards_list:
+            card.cut_next()
+
+        return True
+
+    def shuffle(self):
+        """
+        Method used to shuffle the Deck.
+
+        Returns:
+            - (bool) : True when the deck is shuffle.
+        """
+
+        # We get the list of all the Cards in Deck and we remove all 'next' relations.
+        cards = self.get_list()
+        self.cut_all_next()
+
+        # Shuffle the Deck by random module.
+        random.shuffle(cards)
+
+        # Set the new head of the Deck.
+        self.head = cards[0]
+
+        # Re-build all the 'next' relations.
+        for i in range(len(cards)-1):
+            card = cards[i]
+            card.next = cards[i+1]
+
+        return True
+
 if __name__ == '__main__':
     C1 = Card('2', 'Spades')
     C2 = Card('K', 'Diamonds')
     C3 = Card('Q', 'Diamonds')
 
     C1.next = C2
+    C2.next = C3
 
     D = Deck()
     D.head = C1
+    print(D)
+    print(D.shuffle())
+    print(D)
     # print(D.get_size())
     # print(D.get_first_card())
     # print(D.get_last_card())
-    print(D.add_bottom_card(C3))
-    print(D.get_last_card())
-    print(D.get_index(C3))
+    # print(D.add_bottom_card(C3))
+    # print(D.get_last_card())
+    # print(D.get_index(C3))

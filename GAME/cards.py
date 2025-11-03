@@ -131,6 +131,17 @@ class Card():
         """
         return self.power == other_card.power
 
+    def cut_next(self):
+        """
+        Method used to remove the 'next' pointer of the Card.
+
+        Returns:
+            - (bool) : True.
+        """
+        self.next = None
+
+        return True
+
 if __name__ == '__main__':
     C1 = Card('K', 'Clubs')
     C2 = Card('8', 'Diamonds')

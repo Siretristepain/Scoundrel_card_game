@@ -295,6 +295,30 @@ class Deck():
             card.next = cards[i+1]
 
         return True
+    
+def get_standard_deck():
+    """
+    Function which create a Deck() instance, composed of 54 standard Cards.
+
+    Returns:
+        - D (Deck()) : the Deck composed of 54 Cards.
+    """
+    cards = []
+    for suit in ['Diamonds', 'Spades', 'Hearts', 'Clubs']:
+        for value in ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']:
+            cards.append(Card(value=value, suits=suit))
+    
+    for i in range(2):
+        cards.append(Card('Joker'))
+
+    D = Deck()
+    D.head = cards[0]
+    print(len(cards))
+    for i in range(len(cards)-1):
+        card = cards[i]
+        card.next = cards[i+1]
+
+    return D
 
 if __name__ == '__main__':
     C1 = Card('2', 'Spades')
@@ -315,3 +339,5 @@ if __name__ == '__main__':
     # print(D.add_bottom_card(C3))
     # print(D.get_last_card())
     # print(D.get_index(C3))
+
+    print(get_standard_deck())

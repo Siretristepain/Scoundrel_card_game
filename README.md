@@ -41,7 +41,8 @@ Here is some interesting methods to implement in the Deck logic :
 - Add a X card at the i position of the deck.
 - Remove the X card in the deck.
 - suffle the deck.
-- draw the first card of the deck.
+- draw the first card of the deck. (--> same as get first card ?)
+- get index of a given Card in the Deck ?
 
 **Board** :
 I think that the best idea is to create a class for the board game. Thanks to that, it will be simple to show rooms during the game.

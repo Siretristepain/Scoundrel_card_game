@@ -197,6 +197,45 @@ class Deck():
 
         return True
 
+    def get_index(self, card_to_find: Card=None):
+        """
+        Method used to get the index of the 'card_to_find' in the Deck.
+
+        Args:
+            - card_to_find (Card()) : the Card that we want to get the index.
+
+        Returns:
+            - i (int) : the index of the Card in the Deck, False if the Card is not found.
+        """
+        size = self.get_size()
+        card = self.head
+
+        for i in range(size):
+            if card == card_to_find:
+                return i
+            card = card.next
+            
+        return None
+
+    def remove_card(self, card_to_remove: Card=None):
+        """
+        Method used to remevo a 'card_to_remove' (Card) from the Deck.
+
+        Args:
+            - card_to_remove (Card()) : the Card that we want to remove.
+
+        Returns:
+            - (bool) : True if success, False otherwise (the Card is already not in the Deck).
+            (maybe we want to return True even if the Card is not in the Deck?)
+        """
+
+        # TODO : prevent case if the Card that we want to delete is the first one because it will generate : get_card(-1)
+        card_to_remove_index = self.get_index(card_to_find=card_to_remove)
+        card_before = self.get_card(card_to_remove_index-1)
+        card_before.next = card_to_remove.next
+
+        return True
+
 if __name__ == '__main__':
     C1 = Card('2', 'Spades')
     C2 = Card('K', 'Diamonds')
@@ -211,3 +250,4 @@ if __name__ == '__main__':
     # print(D.get_last_card())
     print(D.add_bottom_card(C3))
     print(D.get_last_card())
+    print(D.get_index(C3))

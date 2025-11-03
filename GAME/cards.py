@@ -7,7 +7,7 @@ from utils.cards_utils import powers, suits_emoji
 class Card():
 
     def __init__(self, value=None, suits=None, power=None, next=None):
-        self.value = str(value)
+        self.value = value
         self.suits = suits
         power = powers.get(self.value, None)
         self.power = power
@@ -20,7 +20,7 @@ class Card():
         """
         Méthod used to have a friendly representation of a Card when we do 'print(Card)'.
         """
-        return f"{self.value} {suits_emoji.get(self.suits, self.suits if self.value != 'Joker' else suits_emoji.get('Joker'))}"
+        return f"{str(self.value)} {suits_emoji.get(self.suits, self.suits if self.value != 'Joker' else suits_emoji.get('Joker'))}"
 
     def is_null(self):
         """

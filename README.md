@@ -19,30 +19,32 @@ So, we have to create a class to represente Card (-> Node) and a class to repres
 A Card is define by several properties : value (2, 3, ..., J, Q, K, A, Joker), suits (Hearts, Diamonds, Clubs, Spades), power ?
 
 Here is some interesting methods to implement in the Card logic :
-- Is a face card ?
-- Is eaven / Is odd ?
-- Has red color ? Has black color ?
-- Is greater than ... ?
-- Is lower than ... ?
-- Is a joker ?
+- Is a face card ? (DONE)
+- Is eaven / Is odd ? (DONE)
+- Has red color ? Has black color ? (DONE)
+- Is greater than ... ? (DONE)
+- Is lower than ... ? (DONE)
+- Is a joker ? (DONE)
 
 **Deck** :
 As we said, a Deck is a linked chain. So, it's define by a "head". This is the first node (-> the first card).
 
 Here is some interesting methods to implement in the Deck logic :
-- Is empty ?
-- Get size of the deck.
-- Get first card of the deck.
-- Get last card of the deck.
-- What's the card at the index i in the deck?
-- Does the X card is in the deck?
-- Add a X card at the begining of the deck (top of the deck).
-- Add a X card at the bottom of the deck.
-- Add a X card at the i position of the deck.
-- Remove the X card in the deck.
-- suffle the deck.
-- draw the first card of the deck. (--> same as get first card ?)
-- get index of a given Card in the Deck ?
+- Is empty ? (DONE)
+- Get size of the deck. (DONE)
+- Get first card of the deck. (DONE)
+- Get last card of the deck. (DONE)
+- What's the card at the index i in the deck? (DONE)
+- Does the X card is in the deck? (DONE)
+- Add a X card at the begining of the deck (top of the deck). (DONE)
+- Add a X card at the bottom of the deck. (DONE)
+- Add a X card at the i position of the deck. (DONE)
+- Remove the X card in the deck. (DONE)
+- suffle the deck. (DONE)
+- get index of a given Card in the Deck ? (DONE)
+
+- draw if different that get the first Card because get the first Card is just a method that return the first Card of the Deck.
+Draw is an action in which we get the first Card of the Deck and then we remove this Card from the Deck. The initialy second Card become the new first one.
 
 **Board** :
 I think that the best idea is to create a class for the board game. Thanks to that, it will be simple to show rooms during the game.

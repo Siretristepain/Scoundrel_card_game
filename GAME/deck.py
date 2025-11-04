@@ -295,7 +295,27 @@ class Deck():
             card.next = cards[i+1]
 
         return True
-    
+
+    def draw(self):
+        """
+        Draw is an action that we can decompose in two times :
+        - first we get the first Card of the Deck.
+        - then we change the second Card to become the new first one.
+
+        TODO : what append if the Deck is composed about only 1 Card ?
+        """
+
+        # Get the top Card (return it at the end).
+        top_card = self.get_first_card()
+
+        # Put this top Card out of the Deck by setting the second Card at the "new" top.
+        self.head = self.get_card(index=1)
+
+        # Broke the 'next' relation because once we draw a Card, the Card is not link to the Deck anymore.
+        top_card.cut_next()
+
+        return top_card
+
 def get_standard_deck():
     """
     Function which create a Deck() instance, composed of 54 standard Cards.
@@ -340,4 +360,7 @@ if __name__ == '__main__':
     # print(D.get_last_card())
     # print(D.get_index(C3))
 
-    print(get_standard_deck())
+    D1 = get_standard_deck()
+    print(D1)
+    print(D1.shuffle())
+    print(D1)

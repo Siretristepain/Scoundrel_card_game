@@ -52,3 +52,22 @@ The board need to have 5 Cards slots : 4 for the room's Cards and one for the po
 
 **Discard pile** :
 As the board, I think the best idea is to create a class for the discard pile ? Maybe it's juste a Deck instance ??
+
+**PLAYER** :
+
+I think that I have to create a Player class :
+
+Properties :
+- life (int=20) : the life point of the Player.
+- max_life (int=20) -> could be utile in next version to set differents rules.
+- weapon (Card=None) : the weapon equiped by the Player.
+
+Methods :
+- check if the Player is alive ? ( life > 0)
+- get x damage (life - damage, check life after every damage)
+- get x life (potions) (life + potion, check the max_life limit)
+- equip weapon (assign a Card to self.weapon, it could be only one weapon equiped at the time)
+
+The question is : does "get x damage" method check for equiped weapon or the better way is to create a new method "duel" that take an ennemy minion Card, check for equiped weapon, does the compute and call "get x damage". --> This is probably the right way, so :
+
+- a duel method that take and ennemy Card and check for equiped weapon, then call "get x damage" method.

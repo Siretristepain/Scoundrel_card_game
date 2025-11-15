@@ -82,29 +82,60 @@ class Board():
 
         Returns:
             - (list) : True if at least one black Card on Board, False otherwise.
+
+        TODO : There is an AttributeError: 'NoneType' object has no attribute 'is_black' when a slot is empty.
         """
         return self.slot_1.is_black() or self.slot_2.is_black() or self.slot_3.is_black() or self.slot_4.is_black()
 
+    def check_victory(self):
+        """
+        Method used to check if the Player wins.
+        Wins means : no black Card on Deck AND no black Card on Board.
+
+        Returns:
+            - (bool) : True if no black Cards left (both Deck and Board), False otherwise.
+        """
+        if not self.black_card_on_board() and not self.deck.has_black_card():
+            return True
+        return False
+
 if __name__ == "__main__":
 
-    deck = get_standard_deck()
+    # deck = get_standard_deck()
+
+    C1 = Card('2', 'Diamonds')
+    C2 = Card('Q', 'Hearts')
+    C3 = Card('K', 'Diamonds')
+    C4 = Card('6', 'Hearts')
+    C100 = Card('7', 'Spades')
+    C1.next = C2
+    C2.next = C3
+    C3.next = C4
+    C4.next = C100
+    deck = Deck()
+    deck.head = C1
     board = Board()
     board.deck = deck
+    board.slot_1 = C1
+    board.slot_2 = C2
+    board.slot_3 = C3
+    board.slot_4 = C4
     # print(board)
 
     # Get a first room and print it
-    board.get_room()
-    print(board)
+    # board.get_room()
+    # print(board)
 
-    # Pass the room and print the empty room
-    board.pass_room()
-    print(board)
+    # # Pass the room and print the empty room
+    # board.pass_room()
+    # print(board)
 
-    # Get a new room and print it
-    board.get_room()
-    print(board)
+    # # Get a new room and print it
+    # board.get_room()
+    # print(board)
 
-    print(board.deck)
-    board.slot_1 = Card('2', 'Spades')
-    print(board)
+    # print(board.deck)
+    # board.slot_1 = Card('2', 'Spades')
+    # print(board)
     print(board.black_card_on_board())
+    print(board.check_victory())

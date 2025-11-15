@@ -61,19 +61,62 @@ class Player():
             self.life += heal
         return self.life
 
-    def equip_weapon(self, weapon: Card=None):
+    def interact(self, card: Card=None):
+        """
+        Method which allows to interact with a given Card.
+        This method check the Card's suits according to the Card class properties and redirect to the good interaction method.
+
+        The interaction methods are :
+        - interact_with_monter (to fight a monster)
+        - interact_with_potion (to get a heal potion)
+        - interact_with_weapon (to equip a new weapon)
+        """
+
+        # Monster's logic
+        if card.suits in Card.monsters_suits:
+            return self.interact_with_monster(card)
+
+        # Potion's logic
+        elif card.suits in Card.potions_suits:
+            return self.interact_with_potion(card)
+
+        # Weapon's logic
+        elif card.suits in Card.weapons_suits:
+            return self.interact_with_weapon(card)
+
+        else:
+            print(f"There's an issue in the interaction with that Card : {card}.")
+
+    def interact_with_monster(self, card: Card=None):
+        self.life -= card.power
+        return True
+
+    def interact_with_potion(self, card: Card=None):
+        self.life += card.power
+
+        if self.life > self.max_life:
+            self.life = self.max_life
+
+        return True
+
+    def interact_with_weapon(self, card: Card=None):
         """
         Method used to equip a new weapon to the Player.
         Be careful, if the method is called without weapon, it will throw the current weapon.
 
-        TODO: This method has to be finished after the Weapon class will implement.
+        TODO: This method has to be finished after the Weapon class will implement ?
         """
-        self.weapon = weapon
+        self.weapon = card
         return True
 
 if __name__ == '__main__':
-    P = Player("Raphael")
+    P = Player("Raphael", max_life=50)
     print(P)
     # print(P.is_alive())
-    print(P.get_damage(11))
-    print(P.get_life(80))
+    # print(P.get_damage(11))
+    # print(P.get_life(80))
+
+    C1 = Card('5', 'Diamonds')
+    print(P.weapon)
+    print(P.interact(C1))
+    print(P.weapon)

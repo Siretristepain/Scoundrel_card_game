@@ -4,10 +4,14 @@
 
 from cards import Card
 from deck import Deck, get_standard_deck
+from player import Player
 
 class Board():
 
-    def __init__(self, deck: Deck=None, discard: Deck=None, slot_1: Card=None, slot_2: Card=None, slot_3: Card=None, slot_4: Card=None, weapon: Card=None):
+    def __init__(self, player: Player=None, deck: Deck=None, discard: Deck=None, slot_1: Card=None, slot_2: Card=None, slot_3: Card=None, slot_4: Card=None, weapon: Card=None):
+
+        # We link a Player to the Board
+        self.player = player
 
         # We link the Deck/Discard to the board
         self.deck = deck
@@ -99,10 +103,23 @@ class Board():
             return True
         return False
 
+    def check_defeat(self):
+        """
+        Method used to check if the Player lose.
+        Lose means : Player's life reach 0.
+
+        player.is_alive = True so return False
+        player.is_alive = False so return True
+
+        Returns:
+            - (bool) : True is the Player lose, False otherwise.
+        """
+        return not self.player.is_alive()
+
 if __name__ == "__main__":
 
     # deck = get_standard_deck()
-
+    player = Player('John', life=0)
     C1 = Card('2', 'Diamonds')
     C2 = Card('Q', 'Hearts')
     C3 = Card('K', 'Diamonds')
@@ -115,6 +132,7 @@ if __name__ == "__main__":
     deck = Deck()
     deck.head = C1
     board = Board()
+    board.player = player
     board.deck = deck
     board.slot_1 = C1
     board.slot_2 = C2
@@ -139,3 +157,4 @@ if __name__ == "__main__":
     # print(board)
     print(board.black_card_on_board())
     print(board.check_victory())
+    print(board.check_defeat())

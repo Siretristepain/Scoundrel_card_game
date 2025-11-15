@@ -57,6 +57,7 @@ C'est dans ce fichier qu'on ira chercher les inputs du joueur.
     - Si entrer :
         - Demander au joueur avec quelle carte intéragir (1, 2, 3 ou 4)
         - Faire l'effet de la carte.
+        - Mettre la carte dans la défausse. (et donc faire passer le slot en question sur None. Pour autant, il ne faut pas que ça bloque la méthod black_card_on_board qui a un problème ave is_black() sur NoneType).
         - Répéter cela 3 fois.
         - Il reste donc 1 carte sur le Board.
         - remettre 'pass_previous_room' sur False (il peut déjà l'être mais il peut aussi être sur True donc bon).

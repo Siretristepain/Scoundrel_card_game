@@ -80,16 +80,32 @@ class Board():
 
         return True
 
+    def get_cards_on_board(self):
+        """
+        Method used to get a list of all the Card instance on the room (~Board).
+        The main goal of this method is to don't have issue when a slot is empty (NoneType).
+
+        Returns:
+            - cards (list[Card]) : list of Card that compose the current room (with no NoneType).
+        """
+        cards = [card for card in [self.slot_1, self.slot_2, self.slot_3, self.slot_4] if card != None]
+        return cards
+
     def black_card_on_board(self):
         """
         Method used to check if there is at least one black Card on Board.
 
         Returns:
-            - (list) : True if at least one black Card on Board, False otherwise.
-
-        TODO : There is an AttributeError: 'NoneType' object has no attribute 'is_black' when a slot is empty.
+            - (bool) : True if at least one black Card on Board, False otherwise.
         """
-        return self.slot_1.is_black() or self.slot_2.is_black() or self.slot_3.is_black() or self.slot_4.is_black()
+        # We get a list of all the Cards in the room (without taking empty slots).
+        cards = self.get_cards_on_board()
+
+        # For all these Cards, we check if there's at least one black Card.
+        for card in cards:
+            if card.is_black():
+                return True
+        return False
 
     def check_victory(self):
         """
@@ -136,8 +152,8 @@ if __name__ == "__main__":
     board.deck = deck
     board.slot_1 = C1
     board.slot_2 = C2
-    board.slot_3 = C3
-    board.slot_4 = C4
+    # board.slot_3 = C3
+    # board.slot_4 = C4
     # print(board)
 
     # Get a first room and print it
@@ -156,5 +172,5 @@ if __name__ == "__main__":
     # board.slot_1 = Card('2', 'Spades')
     # print(board)
     print(board.black_card_on_board())
-    print(board.check_victory())
-    print(board.check_defeat())
+    # print(board.check_victory())
+    # print(board.check_defeat())

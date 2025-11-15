@@ -88,10 +88,26 @@ class Player():
             print(f"There's an issue in the interaction with that Card : {card}.")
 
     def interact_with_monster(self, card: Card=None):
+        """
+        Method used to interact with a monster Card.
+        When a Player do this, he lose life point equal to the monster's power.
+
+        TODO : Implement defend logic. The Player can decided to defend if he has an equiped weapon.
+
+        Returns:
+            - (bool) : True when the interaction is over.
+        """
         self.life -= card.power
         return True
 
     def interact_with_potion(self, card: Card=None):
+        """
+        Method used to interact with potion Card.
+        When a Player do this, he gain life point equal to the potion's power, limited by the Player's max_life.
+
+        Returns:
+            - (bool) : True when the interaction is over.
+        """
         self.life += card.power
 
         if self.life > self.max_life:

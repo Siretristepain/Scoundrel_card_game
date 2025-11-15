@@ -70,10 +70,10 @@ Table of methods to implement :
 | black_card_on_board | self | Board | return True if there is at leat one black Card on Board, False otherwise. | X |
 | check_victory | self, deck | Board | return (not deck.has_black_card) & (not black_card_on_board) (True only when the two are False). | X |
 | check_defeat | self, player | Board | return not player.is_alive (so I have to link the Player to the Board) --> check_defeat returns True when the Player lose. | X |
-| interact_with_monster | self | Card | suppose that we previously check that the 'self' is a monster. Deals damage equal to monster's power to the Player by calling get_damage method.  | ----- |
-| interact_with_weapon | self | Card | suppose that we previously check that 'self' if a weapon. Equip the new weapon to the Player by calling equip_weapon.| ----- |
-| interact_with_potion | self | Card | suppose that we previously check that 'self' is a potion. Add potion's value to the Player's life (according to max_life) by calling get_life (rename get_life by add_life ?). | ----- |
-| interact | self | Card | method that check the "type" of the Card and then call the good interact method | ----- |
+| interact_with_monster | self | Card | suppose that we previously check that the 'self' is a monster. Deals damage equal to monster's power to the Player by calling get_damage method.  | 50% |
+| interact_with_weapon | self | Card | suppose that we previously check that 'self' if a weapon. Equip the new weapon to the Player by calling equip_weapon.| X |
+| interact_with_potion | self | Card | suppose that we previously check that 'self' is a potion. Add potion's value to the Player's life (according to max_life) by calling get_life (rename get_life by add_life ?). | X |
+| interact | self | Card | method that check the "type" of the Card and then call the good interact method | X |
 | fill_room | self | Board | Complete a room with 3 new Cards after the Player enter the previous one (this method is used when it still 1 Card on the Board and we want to show a new room). | ----- |
 
 Table of posibilities to explains check_victory logic :

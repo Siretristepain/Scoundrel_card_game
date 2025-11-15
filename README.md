@@ -67,7 +67,7 @@ Table of methods to implement :
 | Method name | argument | Class | Notes | Done |
 | ----- | ----- | ----- | ----- | ----- |
 | has_black_card | self | Deck | return True if remains at least one black Cards in the Deck, False otherwise (we can stop the search at the first black card found). | X |
-| black_card_on_board | self | Board | return True if there is at leat one black Card on Board, False otherwise. | ----- |
+| black_card_on_board | self | Board | return True if there is at leat one black Card on Board, False otherwise. | X |
 | check_victory | self, deck | Board | return (not deck.has_black_card) & (not black_card_on_board) (True only when the two are False). | ----- |
 | check_defeat | self, player | Board | return not player.is_alive (so I have to link the Player to the Board) --> check_defeat returns True when the Player lose. | ----- |
 | interact_with_monster | self | Card | suppose that we previously check that the 'self' is a monster. Deals damage equal to monster's power to the Player by calling get_damage method.  | ----- |

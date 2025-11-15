@@ -76,6 +76,15 @@ class Board():
 
         return True
 
+    def black_card_on_board(self):
+        """
+        Method used to check if there is at least one black Card on Board.
+
+        Returns:
+            - (list) : True if at least one black Card on Board, False otherwise.
+        """
+        return self.slot_1.is_black() or self.slot_2.is_black() or self.slot_3.is_black() or self.slot_4.is_black()
+
 if __name__ == "__main__":
 
     deck = get_standard_deck()
@@ -96,3 +105,6 @@ if __name__ == "__main__":
     print(board)
 
     print(board.deck)
+    board.slot_1 = Card('2', 'Spades')
+    print(board)
+    print(board.black_card_on_board())

@@ -6,8 +6,6 @@ from cards import Card
 from deck import Deck
 
 class Weapon(Card):
-    # Class properties
-    weapon_suits = ['Diamonds']
 
     def __init__(self, value=None, suits=None, power=None, next=None, history: Deck=Deck()):
         """
@@ -20,12 +18,12 @@ class Weapon(Card):
     def is_valid_weapon(self):
         """
         Method used to check if a Card is a valid weapon.
-        Weapons are identified by their suits, so a valid weapon is a Card which the suits is in weapon_suits.
+        Weapons are identified by their suits, so a valid weapon is a Card which the suits is in weapon_suits (-> Card class propertie).
 
         Returns:
             - (bool) : True if valid weapon, False otherwise.
         """
-        return self.suits in Weapon.weapon_suits
+        return self.suits in Card.weapons_suits
 
     def get_last_defended_card(self):
         """
@@ -65,6 +63,6 @@ if __name__ == '__main__':
     # On créer un nouvel attaquant 4 de piques et on voit si l'arme peut défendre dessus (normalement oui)
     card_attack_2 = Card('4', 'Spades')
     print(W.can_defend_on(card_attack_2))
-    # print(W.is_valid_weapon())
+    print(W.is_valid_weapon())
     # Weapon.weapon_suits.append('Clubs')
     # print(W.is_valid_weapon())

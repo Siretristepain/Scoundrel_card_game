@@ -5,6 +5,10 @@
 from utils.cards_utils import powers, suits_emoji
 
 class Card():
+    # Class properties
+    monsters_suits = []
+    potions_suits = []
+    weapons_suits = ['Diamonds']
 
     def __init__(self, value=None, suits=None, power=None, next=None):
         self.value = value

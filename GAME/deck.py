@@ -316,6 +316,24 @@ class Deck():
 
         return top_card
 
+    def has_black_card(self):
+        """
+        Method used to check if there remains at least one black Card in the Deck.
+        This method has a (O)n comlexity : stop when see the first black Card but go through all the n Cards if no black Card in the Deck.
+
+        Returns:
+            - (bool) : True if there is at least one black Card in the Deck, False otherwise.
+        """
+
+        # Get a list of all the Cards in the Deck
+        cards = self.get_list()
+
+        # Go through all these Cards to check for black color
+        for card in cards:
+            if card.is_black():
+                return True
+        return False
+
 def get_standard_deck():
     """
     Function which create a Deck() instance, composed of 54 standard Cards.
@@ -350,9 +368,9 @@ if __name__ == '__main__':
 
     D = Deck()
     D.head = C1
-    print(D)
-    print(D.shuffle())
-    print(D)
+    # print(D)
+    # print(D.shuffle())
+    # print(D)
     # print(D.get_size())
     # print(D.get_first_card())
     # print(D.get_last_card())
@@ -360,7 +378,9 @@ if __name__ == '__main__':
     # print(D.get_last_card())
     # print(D.get_index(C3))
 
-    D1 = get_standard_deck()
-    print(D1)
-    print(D1.shuffle())
-    print(D1)
+    # D1 = get_standard_deck()
+    # print(D1)
+    # print(D1.shuffle())
+    # print(D1)
+
+    print(D.has_black_card())

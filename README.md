@@ -51,22 +51,22 @@ C'est dans ce fichier qu'on ira chercher les inputs du joueur.
     - Si 'pass_previous_room' == False:
         - ça veut dire qu'il reste une carte sur le plateau et qu'on ne veut pas afficher une nouvelle room entière mais juste compléter de 3 cartes l'existante (créer une méthode spéciale fill_room() ?)
 
-- Proposer d'entrer ou de passer la room.
-- Si passer, alors mettre 'pass_previous_room' sur True
+- Proposer d'entrer ou de passer la room si 'pass_previous_room' est False.
+    - Si passer, alors mettre 'pass_previous_room' sur True
 
-- Si entrer :
-    - Demander au joueur avec quelle carte intéragir (1, 2, 3 ou 4)
-    - Faire l'effet de la carte.
-    - Répéter cela 3 fois.
-    - Il reste donc 1 carte sur le Board.
-    - remettre 'pass_previous_room' sur False (il peut déjà l'être mais il peut aussi être sur True donc bon).
+    - Si entrer :
+        - Demander au joueur avec quelle carte intéragir (1, 2, 3 ou 4)
+        - Faire l'effet de la carte.
+        - Répéter cela 3 fois.
+        - Il reste donc 1 carte sur le Board.
+        - remettre 'pass_previous_room' sur False (il peut déjà l'être mais il peut aussi être sur True donc bon).
 
 
 Table of methods to implement :
 
 | Method name | argument | Class | Notes | Done |
 | ----- | ----- | ----- | ----- | ----- |
-| has_black_card | self | Deck | return True if remains at least one black Cards in the Deck, False otherwise (we can stop the search at the first black card found). | ----- |
+| has_black_card | self | Deck | return True if remains at least one black Cards in the Deck, False otherwise (we can stop the search at the first black card found). | X |
 | black_card_on_board | self | Board | return True if there is at leat one black Card on Board, False otherwise. | ----- |
 | check_victory | self, deck | Board | return (not deck.has_black_card) & (not black_card_on_board) (True only when the two are False). | ----- |
 | check_defeat | self, player | Board | return not player.is_alive (so I have to link the Player to the Board) --> check_defeat returns True when the Player lose. | ----- |

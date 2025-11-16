@@ -302,7 +302,10 @@ class Deck():
         - first we get the first Card of the Deck.
         - then we change the second Card to become the new first one.
 
-        TODO : what append if the Deck is composed about only 1 Card ?
+        If draw in an empty Deck, return None.
+
+        Returns:
+            - top_card (Card |None) : return the drawn Card, could be None if the Deck is empty.
         """
 
         # Get the top Card (return it at the end).
@@ -311,8 +314,9 @@ class Deck():
         # Put this top Card out of the Deck by setting the second Card at the "new" top.
         self.head = self.get_card(index=1)
 
-        # Broke the 'next' relation because once we draw a Card, the Card is not link to the Deck anymore.
-        top_card.cut_next()
+        # Broke the 'next' relation because once we draw a Card, the Card is not link to the Deck anymore. (use 'if top_card' in case of empty Deck, because NoneType has not cut_next()).
+        if top_card:
+            top_card.cut_next()
 
         return top_card
 
@@ -368,19 +372,10 @@ if __name__ == '__main__':
 
     D = Deck()
     D.head = C1
-    # print(D)
-    # print(D.shuffle())
-    # print(D)
-    # print(D.get_size())
-    # print(D.get_first_card())
-    # print(D.get_last_card())
-    # print(D.add_bottom_card(C3))
-    # print(D.get_last_card())
-    # print(D.get_index(C3))
 
-    # D1 = get_standard_deck()
-    # print(D1)
-    # print(D1.shuffle())
-    # print(D1)
-
-    print(D.has_black_card())
+    print(D.draw())
+    print(D.draw())
+    print(D.draw())
+    print(D.draw())
+    print(D.draw())
+    print(D.draw())

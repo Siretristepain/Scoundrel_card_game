@@ -30,10 +30,12 @@ class Board():
         """
         Get a simple stdout of the Board. Could be improve next.
 
-        TODO : Add the player's life (only once I've create the Player class).
+        Returns:
+            - (str) : the Board (each slots, weapon and Player's life).
         """
+
         return f"\n| {self.slot_1} | {self.slot_2} | {self.slot_3} | {self.slot_4} | \n \n\
-        | {self.weapon} |\n"
+        | {self.weapon} |    life : {self.player.life}/{self.player.max_life}\n"
 
     def get_room(self):
         """

@@ -189,10 +189,19 @@ class Deck():
             - index (int) : the position to add the Card in the Deck.
 
         Returns:
-            - (bool) :
+            - (bool) : True if add success, False otherwise.
         """
 
-        # TODO: prevent case if index = 0 (because then we call get_card(index-1) so it will be get_card(-1) --> Error.
+        # If the card_to_add is not a Card instance, return False
+        if not isinstance(card_to_add, Card):
+            return False
+
+        # Prevent case if index=0. It means that we want to add the Card at the first position (so we can't get the previous Card).
+        if index == 0:
+            previous_head = self.head
+            self.head = card_to_add
+            self.head.next = previous_head
+            return True
 
         # We have to get the Card juste before the index that we want to add our Card (to change it's pointer and save it's older next).
         card_before = self.get_card(index-1)

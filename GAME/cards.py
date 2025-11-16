@@ -120,6 +120,8 @@ class Card():
 
         Returns:
             - (bool) : True if the current card has a lower power, False otherwise.
+
+        TODO : what append if self or other_card is None ? --> Error (for example in can_defend_on in Weapon class).
         """
         return self.power < other_card.power
     

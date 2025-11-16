@@ -3,10 +3,11 @@
 # ======================
 
 from cards import Card
+from weapon import Weapon
 
 class Player():
 
-    def __init__(self, name: str=None, life:int=20, max_life: int=20, weapon:Card=None):
+    def __init__(self, name: str=None, life:int=20, max_life: int=20, weapon: Weapon=None):
         self.name = name
         self.life = life
         self.max_life = max_life
@@ -90,14 +91,37 @@ class Player():
     def interact_with_monster(self, card: Card=None):
         """
         Method used to interact with a monster Card.
-        When a Player do this, he lose life point equal to the monster's power.
+        If the Player has an equiped weapon, the method ask the Player's for defend.
+        If he want to defend he lose life point equal to the difference between monster's power and weapon power.
+        If he don't want to defend or the weapon can't defend or the Player don't have weapon he lose life point equal to the monster's power.
 
-        TODO : Implement defend logic. The Player can decided to defend if he has an equiped weapon.
+        Args:
+            - card (Card) : the monster's Card which attack the Player.
 
         Returns:
             - (bool) : True when the interaction is over.
         """
-        self.life -= card.power
+
+        if self.weapon:
+            # Maybe in futur it could be a better idea to dedicate an method to get Player's choice
+            choice = input(f"Do you want to defend with your weapon ? (Y/n) : ")
+
+            if choice.upper() == 'Y':
+                if self.weapon.can_defend_on(card):
+                    damage = card.power - self.weapon.power
+
+                    if damage < 0:
+                        damage = 0
+
+                    self.get_damage(damage)
+                    self.weapon.history.add_bottom_card(card)
+                    return True
+                else:
+                    print(f"Your weapon can't defend on {card} because the last defended Card is {self.weapon.get_last_defended_card()}.")
+
+        damage = card.power
+        self.get_damage(damage)
+
         return True
 
     def interact_with_potion(self, card: Card=None):
@@ -132,7 +156,14 @@ if __name__ == '__main__':
     # print(P.get_damage(11))
     # print(P.get_life(80))
 
-    C1 = Card('5', 'Diamonds')
+    C1 = Weapon('5', 'Diamonds')
+    C2 = Card('8', 'Spades')
     print(P.weapon)
     print(P.interact(C1))
     print(P.weapon)
+
+    print(P.interact(C2))
+    print(P)
+    print(P.weapon)
+    print(type(P.weapon))
+    print(P.weapon.get_last_defended_card())

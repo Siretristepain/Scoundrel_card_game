@@ -192,8 +192,12 @@ class Deck():
             - (bool) : True if add success, False otherwise.
         """
 
-        # If the card_to_add is not a Card instance, return False
+        # If the card_to_add is not a Card instance, return False.
         if not isinstance(card_to_add, Card):
+            return False
+
+        # Check that index is not out of range in front of Deck size.
+        if index < 0 or index > self.get_size():
             return False
 
         # Prevent case if index=0. It means that we want to add the Card at the first position (so we can't get the previous Card).

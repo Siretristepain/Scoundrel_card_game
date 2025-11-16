@@ -232,15 +232,22 @@ class Deck():
             - card_to_remove (Card()) : the Card that we want to remove.
 
         Returns:
-            - (bool) : True if success, False otherwise (the Card is already not in the Deck).
-            (maybe we want to return True even if the Card is not in the Deck?)
+            - (bool) : True when finish.
         """
 
-        # TODO : prevent case if the Card that we want to delete is the first one because it will generate : get_card(-1)
         card_to_remove_index = self.get_index(card_to_find=card_to_remove)
+
+        # Case in which we want to remove the first Card.
+        if card_to_remove_index == 0:
+            new_head = self.head.next
+            self.head.cut_next()
+            self.head = new_head
+            return True
+
+        # Case in which we want to remove a Card between the second and the last one.
         card_before = self.get_card(card_to_remove_index-1)
         card_before.next = card_to_remove.next
-
+        card_to_remove.cut_next()
         return True
 
     def get_list(self):

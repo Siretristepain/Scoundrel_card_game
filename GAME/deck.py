@@ -154,6 +154,7 @@ class Deck():
     def add_bottom_card(self, card_to_add: Card=None):
         """
         Method used to add a Card at the bottom of the Deck.
+        If the Deck is empty, it means just add the Card as the new head.
 
         Args:
             - card_to_add (Card()) : the Card to add at the bottom.
@@ -166,9 +167,14 @@ class Deck():
         if card_to_add == None or card_to_add.is_null():
             return False
 
-        # We get the last Card and make it's pointer go through 'card_to_add'.
-        last_card = self.get_last_card()
-        last_card.next = card_to_add
+        # If the Deck is empty, put the card_to_add as the new head of the Deck
+        if self.is_empty():
+            self.head = card_to_add
+
+        # If the Deck is not empty, we get the last Card and make it's pointer go through 'card_to_add'.
+        else:
+            last_card = self.get_last_card()
+            last_card.next = card_to_add
 
         return True
 

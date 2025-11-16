@@ -38,17 +38,25 @@ class Board():
     def get_room(self):
         """
         Method which fill the 4 slots Cards of the Board by draw 4 times in a row.
-
-        TODO : At the point, no verificatin is done about the posibility to draw (imagine if it's remains only 1 Card in the Deck?).
-               + This version is good for the first room and the rooms after passing one, but in "normal" case, we have to draw only 3 times.
+        This method only fill empty slot, so if a slot is already fill before call the method, the Card inside is not replace.
 
         Returns:
             - (bool) : True.
         """
-        self.slot_1 = self.deck.draw()
-        self.slot_2 = self.deck.draw()
-        self.slot_3 = self.deck.draw()
-        self.slot_4 = self.deck.draw()
+
+        # Before draw, we check each slot if it's empty.
+        if not self.slot_1:
+            self.slot_1 = self.deck.draw()
+
+        if not self.slot_2:
+            self.slot_2 = self.deck.draw()
+
+        if not self.slot_3:
+            self.slot_3 = self.deck.draw()
+
+        if not self.slot_4:
+            self.slot_4 = self.deck.draw()
+
         return True
 
     def clear_slots(self):
@@ -135,42 +143,30 @@ class Board():
 if __name__ == "__main__":
 
     # deck = get_standard_deck()
+
+    # PLAYER
     player = Player('John', life=0)
+
+    # CARDS (and relations)
     C1 = Card('2', 'Diamonds')
     C2 = Card('Q', 'Hearts')
     C3 = Card('K', 'Diamonds')
     C4 = Card('6', 'Hearts')
-    C100 = Card('7', 'Spades')
+
     C1.next = C2
-    C2.next = C3
-    C3.next = C4
-    C4.next = C100
+
+    # DECK
     deck = Deck()
     deck.head = C1
+
+    # BOARD
     board = Board()
-    board.player = player
     board.deck = deck
-    board.slot_1 = C1
-    board.slot_2 = C2
-    # board.slot_3 = C3
-    # board.slot_4 = C4
-    # print(board)
+    board.player = player
 
-    # Get a first room and print it
-    # board.get_room()
-    # print(board)
+    board.slot_4 = C3
+    print(board)
 
-    # # Pass the room and print the empty room
-    # board.pass_room()
-    # print(board)
-
-    # # Get a new room and print it
-    # board.get_room()
-    # print(board)
-
-    # print(board.deck)
-    # board.slot_1 = Card('2', 'Spades')
-    # print(board)
-    print(board.black_card_on_board())
-    # print(board.check_victory())
-    # print(board.check_defeat())
+    # ACTIONS
+    board.get_room()
+    print(board)

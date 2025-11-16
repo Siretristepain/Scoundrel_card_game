@@ -38,12 +38,23 @@ class Weapon(Card):
         """
         Method to check if the current weapon can defend on the Card which attack.
         To check that, the method compare the last defended Card by the Weapon with the incoming attacking Card.
+        If the Weapon have not already defend any Card, it means that it can defend on any incoming Card.
 
         Returns:
             - (bool) : True if the weapon can defend, False otherwise.
         """
-        if card.is_lower(self.get_last_defended_card()):
+
+        # We start by get the last Card defended by the Weapon
+        last_defended_card = self.get_last_defended_card()
+
+        # If the Weapon have not defend any Card, it means that the Weapon can defend on any powered Card.
+        if not last_defended_card:
             return True
+
+        # If the Weapon have already defend, we get the last defended one and compare it's power with the new attacking Card.
+        elif last_defended_card:
+            if card.is_lower(last_defended_card):
+                return True
         return False
 
 

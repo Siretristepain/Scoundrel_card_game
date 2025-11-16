@@ -113,5 +113,16 @@ class TestCardMethods(unittest.TestCase):
         self.assertTrue(self.C6.is_equal(self.C7))
         self.assertFalse(self.C2.is_equal(self.C5))
 
+    def test_cut_next(self):
+        """
+        Test Card.cut_next() method.
+        """
+
+        # Create C2 -> C3 relation, then break it and verifies.
+        self.C2.next = self.C3
+        self.assertEqual(self.C2.next, self.C3)
+        self.C2.cut_next()
+        self.assertEqual(self.C2.next, None)
+
 if __name__ == '__main__':
     unittest.main(verbosity=2)

@@ -122,6 +122,7 @@ class Card():
             - (bool) : True if the current card has a lower power, False otherwise.
 
         TODO : what append if self or other_card is None ? --> Error (for example in can_defend_on in Weapon class).
+               I think the best way is to check these things before call is_lower() method instead of doing verifications here.
         """
         return self.power < other_card.power
     

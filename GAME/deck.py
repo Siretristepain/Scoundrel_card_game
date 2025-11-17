@@ -225,7 +225,7 @@ class Deck():
             - card_to_find (Card()) : the Card that we want to get the index.
 
         Returns:
-            - i (int) : the index of the Card in the Deck, False if the Card is not found.
+            - i (int) : the index of the Card in the Deck, None if the Card is not found.
         """
         size = self.get_size()
         card = self.head
@@ -250,6 +250,10 @@ class Deck():
 
         card_to_remove_index = self.get_index(card_to_find=card_to_remove)
 
+        # If the Card is already not in Deck, return False (maybe we want to return True anyway?)
+        if card_to_remove_index == None:
+            return False
+
         # Case in which we want to remove the first Card.
         if card_to_remove_index == 0:
             new_head = self.head.next
@@ -263,6 +267,8 @@ class Deck():
         card_to_remove.cut_next()
         return True
 
+    # TODO: Maybe add a remove_by_index() method ?
+
     def get_list(self):
         """
         Method used to return a Python list composed of all Card in the Deck.
@@ -271,6 +277,10 @@ class Deck():
             - cards_list (list) : the list of all the Cards.
         """
         card = self.head
+
+        # Case of empty Deck
+        if card == None:
+            return []
 
         # Initialize the list with the head inside at the first position
         cards_list = [card]

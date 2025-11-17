@@ -168,5 +168,100 @@ class TestCardMethods(unittest.TestCase):
         self.assertEqual(self.D0.add_card(card_to_add=self.C3, index=size_of_deck), True)
         self.assertEqual(self.D0.get_last_card(), self.C3)
 
+    def test_get_index(self):
+        """
+        Test Deck.get_index() method.
+        """
+        # Standard case
+        self.assertEqual(self.D1.get_index(self.C1), 0)
+        self.assertEqual(self.D1.get_index(self.C3), 2)
+
+        # Case in which we search a Card that is not in the Deck
+        self.assertEqual(self.D0.get_index(self.C2), None)
+
+    def test_remove_card(self):
+        """
+        Test Deck.remove_card() method.
+        """
+        # Standard case
+        self.assertEqual(self.D1.remove_card(card_to_remove=self.C3), True)
+        self.assertEqual(self.D1.get_last_card(), self.C2)
+
+        # Try remove the first Card
+        self.assertEqual(self.D1.remove_card(self.C1), True)
+        self.assertEqual(self.D1.get_first_card(), self.C2)
+
+        # Try remove a Card that is already not in the Deck
+        self.assertEqual(self.D0.remove_card(self.C4), False)
+
+    def test_get_list(self):
+        """
+        Test Deck.get_list() method.
+        """
+        # Get list of a 3 Cards Deck
+        self.assertEqual(self.D1.get_list(), [self.C1, self.C2, self.C3])
+
+        # Get list of an empty Deck
+        self.assertEqual(self.D0.get_list(), [])
+
+    def test_cut_all_next(self):
+        """
+        Test Deck.cut_all_next() method.
+        """
+        # Try cut all relations in a 3 Cards Deck
+        self.assertEqual(self.D1.cut_all_next(), True)
+        self.assertEqual(self.C1.next, None)
+        self.assertEqual(self.C2.next, None)
+        self.assertEqual(self.C3.next, None)
+
+        # Try cut all relations in an empty Deck
+        self.assertEqual(self.D0.cut_all_next(), True)
+
+    def test_shuffle(self):
+        """
+        Test Deck.shuffle() method.
+
+        When we shuffle a Deck, the number of Cards before has to be the same than after shuffling.
+
+        More then this, we want the each Card inside the Deck before shuffle still here in the Deck after.
+        """
+
+        # Check size before/after shuffle
+        self.assertEqual(self.D1.get_size(), 3)
+        cards_in_D1 = self.D1.get_list()
+
+        self.assertEqual(self.D1.shuffle(), True)
+
+        self.assertEqual(self.D1.get_size(), 3)
+        for card in cards_in_D1:
+            self.assertEqual(self.D1.have_in(target_card=card), True)
+
+    def test_draw(self):
+        """
+        Test Deck.draw() method.
+        """
+        # Try draw in an empty Deck
+        self.assertEqual(self.D0.draw(), None)
+
+        # Try draw three times in a row in a 3 Cards Deck and check that after draw a Card, this Card is not in the Deck anymore
+        cards_in_D1 = self.D1.get_list()
+
+        for card in cards_in_D1:
+            self.assertEqual(self.D1.draw(), card)
+            self.assertEqual(self.D1.have_in(card), False)
+
+    def test_has_black_card(self):
+        """
+        Test Deck.has_black_card() method.
+        """
+        # Test in an empty Deck
+        self.assertEqual(self.D0.has_black_card(), False)
+
+        # Test in a Deck that have a black Card in 2nd position
+        self.assertEqual(self.D1.has_black_card(), True)
+        # Do same after removing that 2nd Card
+        self.assertEqual(self.D1.remove_card(self.C2), True)
+        self.assertEqual(self.D1.has_black_card(), False)
+
 if __name__ == '__main__':
     unittest.main()

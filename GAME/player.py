@@ -146,7 +146,7 @@ class Player():
 
         TODO: This method has to be finished after the Weapon class will implement ?
         """
-        self.weapon = card
+        self.weapon = Weapon(value=card.value, suits=card.suits, power=card.power)
         return True
 
 if __name__ == '__main__':

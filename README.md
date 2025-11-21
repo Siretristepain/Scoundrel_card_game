@@ -75,7 +75,7 @@ Table of methods to implement :
 | interact_with_weapon | self | Card | suppose that we previously check that 'self' if a weapon. Equip the new weapon to the Player by calling equip_weapon.| X |
 | interact_with_potion | self | Card | suppose that we previously check that 'self' is a potion. Add potion's value to the Player's life (according to max_life) by calling get_life (rename get_life by add_life ?). | X |
 | interact | self | Card | method that check the "type" of the Card and then call the good interact method | X |
-| fill_room | self | Board | Complete a room with 3 new Cards after the Player enter the previous one (this method is used when it still 1 Card on the Board and we want to show a new room). | ----- |
+| fill_room | self | Board | Complete a room with 3 new Cards after the Player enter the previous one (this method is used when it still 1 Card on the Board and we want to show a new room). | X -> adaptation in get_room |
 
 Table of posibilities to explains check_victory logic :
 

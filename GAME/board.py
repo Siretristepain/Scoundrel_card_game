@@ -35,7 +35,7 @@ class Board():
         """
 
         return f"\n| {self.slot_1} | {self.slot_2} | {self.slot_3} | {self.slot_4} | \n \n\
-        | {self.weapon} |    life : {self.player.life}/{self.player.max_life}\n"
+        | {self.player.weapon} |    life : {self.player.life}/{self.player.max_life}\n"
 
     def get_room(self):
         """
